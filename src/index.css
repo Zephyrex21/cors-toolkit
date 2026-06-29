@@ -1237,3 +1237,189 @@ pre.code-block {
   font-weight: 500;
   text-align: center;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   PHASE 4 — Polish, Mobile, Shortcuts, Toast
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Feature pills (hero) ───────────────────────────────── */
+.feature-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  backdrop-filter: blur(var(--blur));
+}
+
+/* ─── Keyboard hint beside label ────────────────────────── */
+.kbd-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: auto;
+  font-family: var(--font-mono);
+}
+
+/* ─── Toast ──────────────────────────────────────────────── */
+.toast-wrap {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--r-lg);
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+.toast-wrap.info    {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+}
+.toast-wrap.success {
+  background: var(--success-dim);
+  border: 1px solid var(--success-border);
+  color: var(--success);
+}
+.toast-icon { display: flex; align-items: center; }
+
+/* ─── Shortcuts modal backdrop ───────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+}
+
+/* ─── Shortcuts modal ────────────────────────────────────── */
+.shortcuts-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  width: min(400px, calc(100vw - 32px));
+  overflow: hidden;
+}
+
+.sm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--glass-border);
+}
+.sm-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.sm-body { padding: 8px 0; }
+
+.sm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 16px;
+  gap: 16px;
+}
+.sm-row:hover { background: var(--glass-hover); }
+.sm-action { font-size: 13px; color: var(--text-secondary); }
+.sm-keys   { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.sm-plus   { font-size: 11px; color: var(--text-muted); margin: 0 1px; }
+
+.sm-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 5px;
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  box-shadow: 0 1px 0 var(--glass-border);
+}
+
+.sm-footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--glass-border);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ─── Mobile responsive ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .header   { padding: 16px; }
+  .container{ padding: 0 16px; }
+
+  .hero { padding: 32px 0 24px; }
+  .hero-title { font-size: 28px; letter-spacing: -1px; }
+  .hero-sub   { font-size: 14px; }
+  .feature-pills { gap: 6px; }
+  .feature-pill  { font-size: 11px; padding: 4px 10px; }
+
+  .dna-grid  { grid-template-columns: 1fr 1fr; }
+  .fw-grid   { grid-template-columns: repeat(3, 1fr); }
+
+  .fv-diagram { padding: 20px 12px 14px; gap: 8px; }
+  .fn-wrap { width: 76px; padding: 10px 6px 8px; }
+  .fn-icon { font-size: 18px; }
+  .fn-sub  { display: none; }
+
+  .hi-toggle-sub { display: none; }
+  .kbd-hint      { display: none; }
+
+  pre.code-block { font-size: 11.5px; }
+
+  .sm-header { padding: 12px 14px; }
+  .sm-row    { padding: 8px 14px; }
+}
+
+@media (max-width: 400px) {
+  .fw-grid   { grid-template-columns: repeat(2, 1fr); }
+  .dna-grid  { grid-template-columns: 1fr; }
+  .hero-title { font-size: 24px; }
+}
+
+/* ─── Scroll-margin for smooth scroll targets ────────────── */
+.dna-section, .fv-wrap, .hi-wrap, .fw-section, .cc-wrap {
+  scroll-margin-top: 80px;
+}
+
+/* ─── Reduced motion override ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  #bg-canvas { display: none; }
+}
