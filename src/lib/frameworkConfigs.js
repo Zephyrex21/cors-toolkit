@@ -12,7 +12,7 @@ export const FRAMEWORKS = [
   {
     id: 'express',
     name: 'Express',
-    badge: '🟢',
+    badge: 'express',
     language: 'javascript',
     install: 'npm install cors',
     config: (p) => {
@@ -36,7 +36,7 @@ app.use(cors({
   {
     id: 'fastify',
     name: 'Fastify',
-    badge: '⚡',
+    badge: 'fastify',
     language: 'javascript',
     install: 'npm install @fastify/cors',
     config: (p) => {
@@ -55,7 +55,7 @@ app.use(cors({
   {
     id: 'nginx',
     name: 'Nginx',
-    badge: '🌐',
+    badge: 'nginx',
     language: 'nginx',
     install: null,
     config: (p) => {
@@ -85,7 +85,7 @@ app.use(cors({
   {
     id: 'fastapi',
     name: 'FastAPI',
-    badge: '🐍',
+    badge: 'fastapi',
     language: 'python',
     install: 'pip install fastapi',
     config: (p) => {
@@ -108,7 +108,7 @@ app.add_middleware(
   {
     id: 'django',
     name: 'Django',
-    badge: '🎸',
+    badge: 'django',
     language: 'python',
     install: 'pip install django-cors-headers',
     config: (p) => {
@@ -139,7 +139,7 @@ ${creds ? '\nCORS_ALLOW_CREDENTIALS = True' : ''}`
   {
     id: 'spring',
     name: 'Spring',
-    badge: '🍃',
+    badge: 'spring',
     language: 'java',
     install: null,
     config: (p) => {
@@ -167,7 +167,7 @@ public class CorsConfig implements WebMvcConfigurer {
   {
     id: 'laravel',
     name: 'Laravel',
-    badge: '🔴',
+    badge: 'laravel',
     language: 'php',
     install: null,
     config: (p) => {
@@ -194,7 +194,7 @@ return [
   {
     id: 'gin',
     name: 'Go / Gin',
-    badge: '🐹',
+    badge: 'gin',
     language: 'go',
     install: 'go get github.com/gin-contrib/cors',
     config: (p) => {
@@ -218,7 +218,7 @@ r.Use(cors.New(config))`
   {
     id: 'aspnet',
     name: 'ASP.NET',
-    badge: '🔷',
+    badge: 'aspnet',
     language: 'csharp',
     install: null,
     config: (p) => {

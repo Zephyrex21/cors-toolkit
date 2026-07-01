@@ -28,10 +28,10 @@ export function parseRawHeaders(raw) {
 
 /* ─── Audit result statuses ──────────────────────────────── */
 export const AUDIT_STATUS = {
-  OK:      'ok',       // ✅ present and correct
-  WARN:    'warn',     // ⚠️  present but wrong value
-  MISSING: 'missing',  // ❌ absent but required
-  SUGGEST: 'suggest',  // 💡 absent but recommended
+  OK:      'ok',       // present and correct
+  WARN:    'warn',     // present but wrong value
+  MISSING: 'missing',  // absent but required
+  SUGGEST: 'suggest',  // absent but recommended
 }
 
 /* ─── Run the full CORS audit ────────────────────────────── */

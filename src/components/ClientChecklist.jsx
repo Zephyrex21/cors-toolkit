@@ -26,7 +26,7 @@ function buildItems(parsed) {
     group: 'fetch',
     label: "Don't use mode: 'no-cors' to silence the error",
     desc:  "Setting mode: 'no-cors' hides the error but returns an opaque response — you can't read the data. It's not a fix.",
-    code:  `// ❌ Wrong — opaque response, can't read body\nfetch(url, { mode: 'no-cors' })\n\n// ✅ Correct — fix the server, keep default mode\nfetch(url)`,
+    code:  `// Wrong — opaque response, can't read body\nfetch(url, { mode: 'no-cors' })\n\n// Correct — fix the server, keep default mode\nfetch(url)`,
   })
 
   /* ── Credentials errors ──────────────────────────────── */
@@ -44,7 +44,7 @@ function buildItems(parsed) {
       group: 'fetch',
       label: 'Server must use an exact origin, not a wildcard',
       desc:  "When credentials are involved, Access-Control-Allow-Origin: * is rejected by the browser. The server must echo back the exact requesting origin.",
-      code:  `// ❌ Wrong\nAccess-Control-Allow-Origin: *\n\n// ✅ Correct\nAccess-Control-Allow-Origin: http://localhost:3000`,
+      code:  `// Wrong\nAccess-Control-Allow-Origin: *\n\n// Correct\nAccess-Control-Allow-Origin: http://localhost:3000`,
     })
   }
 
@@ -89,7 +89,7 @@ function buildItems(parsed) {
     group: 'server',
     label: 'CORS middleware must come before your route handlers',
     desc:  'If you register routes before the CORS middleware, requests handled by those routes won\'t get CORS headers.',
-    code:  `// ❌ Wrong order\napp.get('/api/data', handler)\napp.use(cors(config))  // too late\n\n// ✅ Correct order\napp.use(cors(config))  // first\napp.get('/api/data', handler)`,
+    code:  `// Wrong order\napp.get('/api/data', handler)\napp.use(cors(config))  // too late\n\n// Correct order\napp.use(cors(config))  // first\napp.get('/api/data', handler)`,
   })
 
   /* ── Dev proxy ───────────────────────────────────────── */
@@ -272,7 +272,8 @@ export default function ClientChecklist({ parsed }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
           >
-            ✓ All checked — if the issue persists, the problem is server-side. Review the config above.
+            <Check size={14} strokeWidth={2.5} style={{ verticalAlign: -2, marginRight: 6 }} />
+            All checked — if the issue persists, the problem is server-side. Review the config above.
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp, Search, Copy, Check, Info } from 'lucide-react'
+import { ChevronDown, ChevronUp, Search, Copy, Check, Info, X, AlertTriangle, Lightbulb } from 'lucide-react'
 import { parseRawHeaders, runCorsAudit, AUDIT_STATUS } from '../lib/headerParser'
+import { useAutoResizeTextarea } from '../lib/useAutoResizeTextarea'
 
 /* ─── Status config ──────────────────────────────────────── */
 const STATUS_CFG = {
-  [AUDIT_STATUS.OK]:      { icon: '✓', label: 'OK',        cls: 'ok'      },
-  [AUDIT_STATUS.WARN]:    { icon: '!', label: 'Wrong value',cls: 'warn'    },
-  [AUDIT_STATUS.MISSING]: { icon: '✕', label: 'Missing',   cls: 'missing' },
-  [AUDIT_STATUS.SUGGEST]: { icon: '·', label: 'Suggested', cls: 'suggest' },
+  [AUDIT_STATUS.OK]:      { Icon: Check,         label: 'OK',         cls: 'ok'      },
+  [AUDIT_STATUS.WARN]:    { Icon: AlertTriangle, label: 'Wrong value',cls: 'warn'    },
+  [AUDIT_STATUS.MISSING]: { Icon: X,             label: 'Missing',    cls: 'missing' },
+  [AUDIT_STATUS.SUGGEST]: { Icon: Lightbulb,     label: 'Suggested',  cls: 'suggest' },
 }
 
 /* ─── Inline copy button ─────────────────────────────────── */
@@ -43,7 +44,7 @@ function AuditRow({ result, index }) {
         aria-expanded={open}
       >
         <span className={`hi-badge ${cfg.cls}`} aria-label={cfg.label}>
-          {cfg.icon}
+          <cfg.Icon size={10} strokeWidth={3} />
         </span>
 
         <span className="hi-key">{result.key}</span>
@@ -124,6 +125,9 @@ export default function HeadersInspector({ parsed }) {
   const [rawText,  setRawText]    = useState('')
   const [results,  setResults]    = useState(null)
   const [err,      setErr]        = useState('')
+  const textareaRef = useRef(null)
+
+  useAutoResizeTextarea(textareaRef, rawText, 220)
 
   const handleInspect = () => {
     if (!rawText.trim()) {
@@ -184,12 +188,13 @@ export default function HeadersInspector({ parsed }) {
 
               {/* Textarea */}
               <textarea
+                ref={textareaRef}
                 className="hi-textarea"
                 value={rawText}
                 onChange={e => { setRawText(e.target.value); setErr('') }}
                 placeholder={`HTTP/1.1 200 OK\nContent-Type: application/json\nX-Powered-By: Express\n\n(or just the headers block, without the status line)`}
                 spellCheck={false}
-                rows={6}
+                rows={4}
                 aria-label="Paste response headers here"
               />
 
